@@ -178,7 +178,7 @@ int main()
                 //     return 0;
                 // }
                 // cout << "eat (" << dx + 1 << "," << dy + 1 << ") dist = " << dist + 1 << " level = " << level << " eats = " << eats << "\n";
-                break;
+                
             }
         }
     }
