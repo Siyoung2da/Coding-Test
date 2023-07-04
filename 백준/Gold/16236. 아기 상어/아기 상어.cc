@@ -146,49 +146,12 @@ int main()
             }
             else if (!visit[dx][dy] && map[dx][dy] > 0 && map[dx][dy] < level)
             {
-                // x = dx;
-                // y = dy;
-                // eats++;
-                // canEat--;
-                // map[dx][dy] = 0;
-                // if(eats == level) {
-                //     level++;
-                //     eats = 0;
-                // }
-                // if(canEat == 0) {
-                //     for(int i=0;i<N;i++) {
-                //         for(int j=0;j<N;j++) {
-                //             if(map[i][j] > 0 && map[i][j] < level) canEat++;
-                //         }
-                //     }
-                // }
-
-                // while(!q.empty()) q.pop();
-                // for (int i=0;i<N;i++) {
-                //     for(int j=0;j<N;j++) {
-                //         visit[i][j] = false;
-                //     }
-                // }
                 q.push(make_pair(make_pair(dx, dy), dist + 1));
                 vec.push_back(make_pair(make_pair(dx, dy), dist + 1));
                 visit[dx][dy] = true;
-                // if (canEat == 0)
-                // {
-                //     cout << dist + 1 << "\n";
-                //     return 0;
-                // }
-                // cout << "eat (" << dx + 1 << "," << dy + 1 << ") dist = " << dist + 1 << " level = " << level << " eats = " << eats << "\n";
-                
             }
         }
     }
     cout << maxDistance << "\n";
 
-    // 6
-    // 5 4 3 2 3 4
-    // 4 3 2 3 4 5
-    // 3 2 9 5 6 6
-    // 2 1 2 3 4 5
-    // 3 2 1 6 5 4
-    // 6 6 6 6 6 6
 }
