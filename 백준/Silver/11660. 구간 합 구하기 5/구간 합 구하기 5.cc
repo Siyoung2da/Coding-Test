@@ -13,19 +13,11 @@ int main() {
     cin.tie(NULL);
     cout.tie(NULL);
     cin >> n >> m;
-    for (int i=1;i<=n;i++) {
-        for(int j=1;j<=n;j++) {
-            cin >> map[i][j];
-        }
-    }
     for(int i=1;i<=n;i++) {
         for(int j=1;j<=n;j++) {
-            if(j==1) dp[i][j] = dp[i-1][n] + map[i][j];
-            else dp[i][j] = dp[i][j-1] + map[i][j];
+            cin >> map[i][j];
+            dp[i][j] = dp[i-1][j] + dp[i][j-1] + map[i][j] - dp[i-1][j-1];
         }
-    }
-    for (int i=1;i<=n;i++) {
-        dp[i][0] = dp[i-1][n];
     }
     // 1 2 3 4
     // 2 3 4 5
@@ -35,10 +27,9 @@ int main() {
         int x1, x2, y1, y2;
         cin >> x1 >> y1 >> x2 >> y2;
         int num = 0;
-
-        for(int i=x1;i<=x2;i++) {
-            num += (dp[i][y2] - dp[i][y1-1]);
-        }  
+        
+        num = dp[x2][y2] - dp[x1-1][y2] - dp[x2][y1-1] + dp[x1-1][y1-1];
+        
         result.push_back(num);
     }
     // cout << "\n";
