@@ -14,22 +14,19 @@ int main()
         cin >> num[i];
     }
 
-    for (int i = 0; i < n; i++)
+
+    int left = 0, right = 0;
+    while (right <= n)
     {
-        sum = 0;
-        for (int j = i; j < n; j++)
-        {
-            sum += num[j];
-            if(sum > m) {
-                sum = 0;
-                break;
-            }
-            if(sum == m) {
-                
-                sum = 0;
-                cnt++;
-                break;
-            }
+        if(sum > m) {
+            sum -= num[left++];
+        }
+        if(sum == m) {
+            cnt++;
+            sum += num[right++];
+        }
+        if(sum < m) {
+            sum += num[right++];
         }
     }
 
