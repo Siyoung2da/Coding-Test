@@ -106,7 +106,7 @@ int main()
     }
 //  d1, d2 ≥ 1, 1 ≤ x < x+d1+d2 ≤ N, 1 ≤ y-d1 < y < y+d2 ≤ N
 
-    for(int x=2;x<=n-1;x++) {
+    for(int x=1;x<=n-1;x++) {
         for(int y=2;y<=n-1;y++) {
             int d1 = 1, d2 = 1;
             while(x + d1 + d2 <= n && y - d1 >= 1 && y + d2 <= n) {
