@@ -1,40 +1,39 @@
 #include <iostream>
 #include <queue>
-#include <algorithm>
 using namespace std;
 
 long long a, b;
-long long minCount = 10000000000;
+queue<pair<long long, int> > q;
 
-int main() {
-    cin >> a >> b;
-    queue<pair<long long, long long> > q;
+void bfs(long long a, long long b) {
     q.push(make_pair(a, 1));
-
     while(!q.empty()) {
-        long long num = q.front().first;
-        long long many = q.front().second;
+        long long now = q.front().first;
+        int time = q.front().second;
+        if(now == b) {
+            cout << time << "\n";
+            return;
+        }
         q.pop();
-
-        for(int i=0;i<2;i++) {
-            long long nextNum = 0;
-            if(i==0) {
-                nextNum = num * 2;
+        for (int i=0;i<2;i++) {
+            if(i == 0) {
+                long long next = now * 2;
+                if(next <= b) {
+                    q.push(make_pair(next, time + 1));
+                }
             }
-            else {
-                nextNum = num*10 + 1;
-            }
-            if(nextNum < b) {
-                q.push(make_pair(nextNum, many + 1));
-            }
-            if(nextNum == b) {
-                minCount = min(minCount, many+1);
+            else if(i == 1) {
+                long long next = now * 10 + 1;
+                if(next <= b) {
+                    q.push(make_pair(next, time + 1));
+                }
             }
         }
     }
-    if(minCount == 10000000000) {
-        cout << "-1\n";
-        return 0;
-    }
-    cout << minCount << "\n";
+    cout << "-1\n";
+}
+
+int main() {
+    cin >> a >> b;
+    bfs(a, b);
 }
