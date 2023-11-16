@@ -6,6 +6,7 @@ using namespace std;
 int n, m, h;
 int map[31][12];
 bool flag;
+vector<pair<int, int> > vec;
 
 bool check() {
     for(int col=1;col<=n;col++) {
@@ -23,7 +24,7 @@ bool check() {
     return true;
 }
 
-void dfs(int row, int col, int cnt, int total) {
+void dfs(int index, int cnt, int total) {
     if(cnt > total) {
         return;
     }
@@ -34,16 +35,20 @@ void dfs(int row, int col, int cnt, int total) {
         }
     }
 
-    for(int i=row;i<=h;i++) {
-        for(int j=1;j<=n;j++) {
-            if(map[i][j] == 0 && !flag) {
-                map[i][j] = 1;
-                dfs(i, j, cnt + 1, total);
-                map[i][j] = 0;
-            }
-        }
+    // for(int i=row;i<=h;i++) {
+    //     for(int j=1;j<=n;j++) {
+    //         if(map[i][j] == 0 && !flag) {
+    //             map[i][j] = 1;
+    //             dfs(i, j, cnt + 1, total);
+    //             map[i][j] = 0;
+    //         }
+    //     }
+    // }
+    for(int i=index;i<vec.size();i++) {
+        map[vec[i].first][vec[i].second] = 1;
+        dfs(i + 1, cnt + 1, total);
+        map[vec[i].first][vec[i].second] = 0;
     }
-    
 }
 
 int main() {
@@ -61,8 +66,14 @@ int main() {
         return 0;
     }
 
+    for(int i=1;i<=h;i++) {
+        for(int j=1;j<=n;j++) {
+            if(map[i][j] == 0) vec.push_back(make_pair(i, j));
+        }
+    }
     for(int total=1;total<=3;total++) {
-        dfs(1, 1, 0, total);
+        // dfs(1, 1, 0, total);
+        dfs(0, 0, total);
         if(flag) {
             cout << total << "\n";
             break;
